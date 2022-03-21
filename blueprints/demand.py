@@ -47,14 +47,41 @@ def demand_add():
     else:
         form = AddDemandForm(request.form)
         if form:
-            demand_name = form.demand_name.data
-            demand_href = form.demand_href.data
-            pm_name = form.pm_name.data
-            rd_name = form.rd_name.data
-            test_name = form.test_name.data
-
-            test_time = request.form.get("test_time")
-            online_time = request.form.get("online_time")
+            if len(form.demand_name.data) > 0:
+                demand_name = form.demand_name.data
+            else:
+                flash("请输入需求名称！")
+                return render_template("demand/add_demand.html")
+            if len(form.demand_href.data) > 0:
+                demand_href = form.demand_href.data
+            else:
+                flash("请输入需求链接！")
+                return render_template("demand/add_demand.html")
+            if len(form.pm_name.data) > 0:
+                pm_name = form.pm_name.data
+            else:
+                flash("请输入产品经理！")
+                return render_template("demand/add_demand.html")
+            if len(form.rd_name.data) > 0:
+                rd_name = form.rd_name.data
+            else:
+                flash("请输入开发人员！")
+                return render_template("demand/add_demand.html")
+            if len(form.test_name.data) > 0:
+                test_name = form.test_name.data
+            else:
+                flash("请输入测试人员！")
+                return render_template("demand/add_demand.html")
+            if len(request.form.get("test_time")):
+                test_time = request.form.get("test_time")
+            else:
+                flash("请选择提测时间！")
+                return render_template("demand/add_demand.html")
+            if len(request.form.get("online_time")):
+                online_time = request.form.get("online_time")
+            else:
+                flash("请选择上线时间")
+                return render_template("demand/add_demand.html")
             create_time = datetime.now()
             isDelete = '0'
             status = '0'
