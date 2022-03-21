@@ -7,7 +7,6 @@
 import wtforms
 from wtforms.validators import length, email, EqualTo
 from models import EmailCaptchaModel, UserModel, QuestionModel
-from werkzeug.security import check_password_hash
 
 """
 注册表单
