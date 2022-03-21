@@ -52,6 +52,7 @@ def demand_add():
             pm_name = form.pm_name.data
             rd_name = form.rd_name.data
             test_name = form.test_name.data
+
             test_time = request.form.get("test_time")
             online_time = request.form.get("online_time")
             create_time = datetime.now()
