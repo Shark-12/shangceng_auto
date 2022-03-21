@@ -1,1 +1,13 @@
 Single-database configuration for Flask.
+
+# api 接口调用层
+# blueprints 蓝图
+# classlib 底层方法
+# migrations 表提交
+# static css、js文件存放
+# templates html文件
+# app 运行文件
+# config 配置文件
+# decorators 登录校验
+# exts db文件存储
+# models 数据库表结构设计文件
