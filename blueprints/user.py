@@ -4,7 +4,6 @@
 # @Time    : 2022/2/17 4:38 PM
 # @Author  : yuanhaidong
 # @File    : user.py
-import requests
 from flask import Blueprint, request, render_template, redirect, url_for, jsonify, flash, session
 from flask_mail import Message
 

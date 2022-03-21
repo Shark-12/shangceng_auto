@@ -10,11 +10,13 @@ from models import DemandModel
 from blueprints.forms import AddDemandForm
 from datetime import datetime
 from classlib.demand_class.demand_paging import paging
+from decorators import login_required
 
 bp = Blueprint("demand", __name__, url_prefix="/demand")
 
 
 @bp.route("/list", methods=['GET', 'POST'])
+@login_required
 def demand_list():
     paginate = paging(DemandModel)
     demand = paginate.items
@@ -22,6 +24,7 @@ def demand_list():
 
 
 @bp.route("/status/<int:id>", methods=['GET', 'POST'])
+@login_required
 def demand_status(id):
     demand = DemandModel.query.filter_by(id=id).first()
     if demand.status == 0:
@@ -37,6 +40,7 @@ def demand_status(id):
 
 
 @bp.route("/add", methods=['GET', 'POST'])
+@login_required
 def demand_add():
     if request.method == 'GET':
         return render_template("demand/add_demand.html")
@@ -67,6 +71,7 @@ def demand_add():
 
 
 @bp.route("/update/<int:update_id>", methods=['GET', 'POST'])
+@login_required
 def demand_update(update_id):
     if request.method == 'GET':
         list = DemandModel.query.filter_by(id=update_id).first()
@@ -95,6 +100,7 @@ def demand_update(update_id):
 
 
 @bp.route("/delete/<int:delete_id>", methods=['GET', 'POST'])
+@login_required
 def demand_delete(delete_id):
     list = DemandModel.query.filter_by(id=delete_id).first()
     if list:
@@ -104,4 +110,3 @@ def demand_delete(delete_id):
     else:
         flash("此数据不可删除！")
         return render_template("demand/demand.html")
-

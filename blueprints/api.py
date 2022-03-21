@@ -21,6 +21,7 @@ def make_number():
 
 
 @bp.route("/get_token", methods=['GET', 'POST'])
+@login_required
 def get_token():
     if request.method == 'GET':
         return render_template("api/get_token.html")
@@ -36,6 +37,7 @@ def get_token():
 
 
 @bp.route("/send_ding", methods=['GET', 'POST'])
+@login_required
 def send_ding():
     message = '[日志提醒]记得按时提交日志！'
     send_message(message)

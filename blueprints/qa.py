@@ -136,7 +136,3 @@ def public_question():
 def about_more():
     return render_template("more.html")
 
-
-@bp.route("/test")
-def test():
-    return render_template("api/get_token.html")
