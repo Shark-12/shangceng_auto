@@ -64,9 +64,10 @@
                         </a>
                         <a class="dropdown-item" style="color: black; margin: 10px"
                            href="http://bjtime.cn/riqi/" target="_blank">->时间计算器<-</a>
-
-                        <a class="dropdown-item" style="color: black; margin: 10px"
-                           href="{{ url_for("api.send_ding") }}">->日志提醒<-</a>
+                        {% if user.id == 1 %}
+                            <a class="dropdown-item" style="color: black; margin: 10px"
+                               href="{{ url_for("api.send_ding") }}">->日志提醒<-</a>
+                        {% endif %}
                     </div>
                 </div>
                 {#                <li classlib="nav-itme ml-3">#}
