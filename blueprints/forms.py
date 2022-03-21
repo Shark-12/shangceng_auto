@@ -99,11 +99,6 @@ class AddPersonalCenterForm(wtforms.Form):
     mobile = wtforms.StringField(validators=[length(min=1, max=12)])
     address = wtforms.StringField(validators=[length(min=1, max=50)])
 
-    def validate_mobile(self, field):
-        mobile = field.data
-        user_model = UserModel.query.filter_by(mobile=mobile).first()
-        if user_model:
-            raise wtforms.ValidationError("手机号存在！")
 
     """
     新增测试需求
