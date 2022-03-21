@@ -81,10 +81,22 @@ def update(update_id):
         if question:
             form = UpdateQuestionForm(request.form)
             if form.validate():
-                question.title = form.title.data
-                question.content = form.content.data
-                question.modular = form.modular.data
+                if len(form.modular.data) > 0:
+                    question.modular = form.modular.data
+                else:
+                    flash("请输入接口所属模块！")
+                    return redirect(url_for("qa.update", update_id=update_id))
+                if len(form.title.data) > 0:
+                    question.title = form.title.data
+                else:
+                    flash("请输入接口路径！")
+                    return redirect(url_for("qa.update", update_id=update_id))
                 question.request_method = form.request_method.data
+                if len(form.content.data) > 0:
+                    question.content = form.content.data
+                else:
+                    flash("请输入入参！")
+                    return redirect(url_for("qa.update", update_id=update_id))
                 question.author = g.user
                 question.update_time = datetime.now()
                 db.session.commit()
@@ -104,10 +116,25 @@ def public_question():
     else:
         form = QuestionFrom(request.form)
         if form.validate():
-            title = form.title.data
+            if len(form.modular.data) > 0:
+                modular = form.modular.data
+            else:
+                flash("请输入接口所属模块！")
+                return render_template("qa/public_question.html")
+            if len(form.title.data) > 0:
+                title = form.title.data
+            else:
+                flash("请输入接口路径！")
+                return render_template("qa/public_question.html")
+
             request_method = form.request_method.data
-            content = form.content.data
-            modular = form.modular.data
+
+            if len(form.content.data) > 0:
+                content = form.content.data
+            else:
+                flash("请输入入参！")
+                return render_template("qa/public_question.html")
+
             is_delete = '0'
             question = QuestionModel(title=title, content=content, author=g.user, request_method=request_method,
                                      modular=modular, isDelete=is_delete)
@@ -117,7 +144,7 @@ def public_question():
             return redirect(url_for("qa.question_list"))
         else:
             flash("输入的数据不正确")
-            return redirect(url_for("public_question.html"))
+            return render_template("qa/public_question.html")
 
 
 # @bp.route("/stupage")
@@ -135,4 +162,3 @@ def public_question():
 @bp.route("/about_more", methods=['GET'])
 def about_more():
     return render_template("more.html")
-

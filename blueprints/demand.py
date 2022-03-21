@@ -46,7 +46,7 @@ def demand_add():
         return render_template("demand/add_demand.html")
     else:
         form = AddDemandForm(request.form)
-        if form:
+        if form.validate():
             if len(form.demand_name.data) > 0:
                 demand_name = form.demand_name.data
             else:
@@ -106,7 +106,7 @@ def demand_update(update_id):
         return render_template("demand/update_demand.html", update_id=update_id, list=list)
     else:
         form = AddDemandForm(request.form)
-        if form:
+        if form.validate():
             demand = DemandModel.query.filter_by(id=update_id).first()
             demand.demand_name = form.demand_name.data
             demand.demand_href = form.demand_href.data

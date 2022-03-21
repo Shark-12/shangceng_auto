@@ -57,10 +57,10 @@ class LoginFrom(wtforms.Form):
 
 
 class QuestionFrom(wtforms.Form):
-    title = wtforms.StringField(validators=[length(min=1, max=100)])
-    request_method = wtforms.StringField(validators=[length(min=1, max=10)])
-    content = wtforms.StringField(validators=[length(min=1, max=200)])
-    modular = wtforms.StringField(validators=[length(min=1, max=50)])
+    title = wtforms.StringField(validators=[length(max=100)])
+    request_method = wtforms.StringField(validators=[length(max=10)])
+    content = wtforms.StringField(validators=[length(max=200)])
+    modular = wtforms.StringField(validators=[length(max=50)])
 
     # def validate_len(self, field):
     #     title = field.data
@@ -82,10 +82,10 @@ class QuestionFrom(wtforms.Form):
 
 
 class UpdateQuestionForm(wtforms.Form):
-    title = wtforms.StringField(validators=[length(min=1, max=100)])
-    request_method = wtforms.StringField(validators=[length(min=1, max=10)])
-    content = wtforms.StringField(validators=[length(min=1, max=200)])
-    modular = wtforms.StringField(validators=[length(min=1, max=50)])
+    title = wtforms.StringField(validators=[length(max=100)])
+    request_method = wtforms.StringField(validators=[length(max=10)])
+    content = wtforms.StringField(validators=[length(max=200)])
+    modular = wtforms.StringField(validators=[length(max=50)])
 
     """
     新增个人信息表单
@@ -105,11 +105,11 @@ class AddPersonalCenterForm(wtforms.Form):
 
 
 class AddDemandForm(wtforms.Form):
-    demand_name = wtforms.StringField(validators=[length(min=1, max=50)])
-    demand_href = wtforms.StringField(validators=[length(min=1, max=200)])
-    pm_name = wtforms.StringField(validators=[length(min=1, max=10)])
-    rd_name = wtforms.StringField(validators=[length(min=1, max=10)])
-    test_name = wtforms.StringField(validators=[length(min=1, max=10)])
+    demand_name = wtforms.StringField(validators=[length(max=50)])
+    demand_href = wtforms.StringField(validators=[length(max=200)])
+    pm_name = wtforms.StringField(validators=[length(max=10)])
+    rd_name = wtforms.StringField(validators=[length(max=10)])
+    test_name = wtforms.StringField(validators=[length(max=10)])
 
 
 
