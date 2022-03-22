@@ -261,7 +261,11 @@
 
             <label><input name="password_confirm" type="password" placeholder="确认密码" class="form-control"
                           id="exampleInputPassword1"/></label>
-
+            {% for message in get_flashed_messages() %}
+                <div class="container" style="width: 20%;">
+                    <div class="text-danger" style="color: #ff9940">{{ message }}</div>
+                </div>
+            {% endfor %}
 
             <input id="btn" type="submit" value="注册">
             <a style="padding-left: 550px ;color: white" id="register" href="/user/login">去登录</a>

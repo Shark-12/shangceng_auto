@@ -114,7 +114,7 @@ def register():
             db.session.commit()
             return redirect(url_for("user.login"))
         else:
-            flash("请重新输入注册信息！")
+            flash("邮箱重复或验证码错误，请重新输入注册信息！")
             return redirect(url_for("user.register"))
 
 
